@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const StudentProfile = require('../../model/studentProfile');
+const StudentControlPanel = require('../../model/studentControlPanel');
 const token = require('../../middleware/token');
 const mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
@@ -41,31 +42,31 @@ router.post("/createProfile", async (req, res, next) => {
   })
 
 // Get student profile details
-  router.get("/getProfileDetails/:student_id", async (req, res, next) => {
-    const student_id = req.params.student_id;
-    try {
-      let verified = token.verify(req.headers.token);
-      if(verified === 'Token Verified') {
-        let result = await StudentProfile.findOne({student_id: student_id})
-        if(!result) {
-          return res.status(400).json({
-            message: 'No such student present'
-          })
-        } else {
-          return res.status(200).json({
-            data: result,
-            message: 'Fetched details successfully'
-          })
-        }
-      } else {
-        return res.status(400).json({
-          message: 'Unauthorized user'
-        })
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  })
+  // router.get("/getProfileDetails/:student_id", async (req, res, next) => {
+  //   const student_id = req.params.student_id;
+  //   try {
+  //     let verified = token.verify(req.headers.token);
+  //     if(verified === 'Token Verified') {
+  //       let result = await StudentProfile.findOne({student_id: student_id})
+  //       if(!result) {
+  //         return res.status(400).json({
+  //           message: 'No such student present'
+  //         })
+  //       } else {
+  //         return res.status(200).json({
+  //           data: result,
+  //           message: 'Fetched details successfully'
+  //         })
+  //       }
+  //     } else {
+  //       return res.status(400).json({
+  //         message: 'Unauthorized user'
+  //       })
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // })
 
   // Get student profile details with respect to student control panel
   router.get("/getProfileDetails/:student_id", async (req, res, next) => {
@@ -81,7 +82,8 @@ router.post("/createProfile", async (req, res, next) => {
           })
         }
         else {
-          // let profile_flags = await StudentControlPanel.findOne({"_id": ObjectId(student_id), flag: true})
+          let profile_flags = await StudentControlPanel.findOne({student_id: student_id})
+          console.log('profile_flags', profile_flags)
           // for(let i=0; i < result.length; i++){
           //   for(let j=0; j < profile_flags.length; j++){
           //     if(result[i]._id == profile_flags[j]._id){
