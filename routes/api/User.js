@@ -106,6 +106,7 @@ router.post('/verifyOTP', async (req, res) => {
             .verificationChecks
             .create({
                 to: `+${phone_number}`,
+                // code is meant as otp here
                 code: req.body.code
             })
             .then(data => {
