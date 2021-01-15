@@ -87,7 +87,8 @@ router.post('/sendOtp', async (req, res) => {
                 channel: 'sms'
             })
             .then(data => res.status(200).json({
-                data: data
+                data: data,
+                message: 'Otp sent'
             }))
         }
     } catch (error) {
@@ -112,7 +113,8 @@ router.post('/verifyOTP', async (req, res) => {
             })
             .then(data => {
                 res.status(200).json({
-                    data: data
+                    data: data,
+                    message: 'Otp Verified'
                 })
             })
             global.phone_number = ''
