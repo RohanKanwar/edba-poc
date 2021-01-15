@@ -78,6 +78,7 @@ router.post('/sendOtp', async (req, res) => {
             })
         }
         else {
+            //phone number to be passed as string as +91 initials are to be added
             global.phone_number = req.body.phone_number
             client.verify.services(process.env.SERVICE_SID)
             .verifications
