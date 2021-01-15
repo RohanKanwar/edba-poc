@@ -120,7 +120,6 @@ router.post('/verifyOtp', async (req, res) => {
                 code: req.body.code
             })
             .then(data => {
-                console.log('data', data)
                 if(data.status === 'approved') {
                     res.status(200).json({
                         data: data,
