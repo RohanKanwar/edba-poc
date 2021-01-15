@@ -4,8 +4,11 @@ const User = require('../../model/user');
 // const bcrypt = require('bcrypt');
 const token = require('../../middleware/token');
 const { route } = require('./Student');
+require('dotenv').config();
+const client  = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+global.phone_number;
 
-router.post('/new', async(req, res) => {
+router.post('/register', async(req, res) => {
     try {
         let result = await User.findOne({email_address: req.body.email_address});
         if(result !== null) {
@@ -64,6 +67,56 @@ router.post('/login', async(req, res) => {
         }
     } catch(err) {
         console.log(err)
+    }
+})
+
+router.post('/sendOtp', async (req, res) => {
+    try {
+        if(!req.body.phone_number) {
+            return res.status(400).json({
+                message: 'Please provide phone number'
+            })
+        }
+        else {
+            phone_number = req.body.phone_number
+            client.verify.services(process.env.SERVICE_SID)
+            .verifications
+            .create({
+                to: `+${phone_number}`,
+                channel: 'sms'
+            })
+            .then(data => res.status(200).json({
+                data: data
+            }))
+        }
+    } catch (error) {
+        console.log(error)      
+    }
+})
+
+router.post('/verifyOTP', async (req, res) => {
+    try {
+        if(!req.body.code) {
+            return res.status(400).json({
+                message: 'Please provide otp'
+            })
+        }
+        else {
+            client.verify.services(process.env.SERVICE_SID)
+            .verificationChecks
+            .create({
+                to: `+${phone_number}`,
+                code: req.body.code
+            })
+            .then(data => {
+                res.status(200).json({
+                    data: data
+                })
+            })
+            phone_number = ''
+        }
+    } catch (error) {
+        console.log(error)
     }
 })
 

@@ -57,11 +57,11 @@ var studentControlPanelSchema = new mongoose.Schema({
 
     address_details: {
         current_address_detail: {
-            house_Boolean: {
+            house_number: {
                 type: Boolean,
                 default: true
             },
-            street_Boolean: {
+            street_number: {
                 type: Boolean,
                 default: true
             },
@@ -80,11 +80,11 @@ var studentControlPanelSchema = new mongoose.Schema({
         },
 
         permanent_address_detail: {
-            house_Boolean: {
+            house_number: {
                 type: Boolean,
                 default: true
             },
-            street_Boolean: {
+            street_number: {
                 type: Boolean,
                 default: true
             },
@@ -121,7 +121,7 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            contact_Boolean: {
+            contact_number: {
                 type: Boolean,
                 default: true
             },
@@ -140,7 +140,7 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            Boolean_of_birth: {
+            date_of_birth: {
                 type: Boolean,
                 default: true
             },
@@ -152,7 +152,7 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            contact_Boolean: {
+            contact_number: {
                 type: Boolean,
                 default: true
             },
@@ -213,11 +213,11 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            enrollment_Boolean: {
+            enrollment_number: {
                 type: Boolean,
                 default: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: Boolean,
                     default: true
@@ -290,11 +290,11 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            enrollment_Boolean: {
+            enrollment_number: {
                 type: Boolean,
                 default: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: Boolean,
                     default: true
@@ -367,11 +367,11 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            enrollment_Boolean: {
+            enrollment_number: {
                 type: Boolean,
                 default: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: Boolean,
                     default: true
@@ -444,11 +444,11 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            enrollment_Boolean: {
+            enrollment_number: {
                 type: Boolean,
                 default: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: Boolean,
                     default: true
@@ -521,11 +521,11 @@ var studentControlPanelSchema = new mongoose.Schema({
                 type: Boolean,
                 default: true
             },
-            enrollment_Boolean: {
+            enrollment_number: {
                 type: Boolean,
                 default: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: Boolean,
                     default: true
@@ -572,7 +572,7 @@ var studentControlPanelSchema = new mongoose.Schema({
             type: Boolean,
             default: true
         },
-        other_Booleans: {
+        other_documents: {
             photo: {
                 type: Boolean,
                 default: true

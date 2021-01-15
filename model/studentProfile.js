@@ -225,7 +225,7 @@ var profileSchema = new mongoose.Schema({
                 type: Number,
                 // required: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: String,
                     // required: true
@@ -302,7 +302,7 @@ var profileSchema = new mongoose.Schema({
                 type: Number,
                 // required: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: String,
                     // required: true
@@ -379,7 +379,7 @@ var profileSchema = new mongoose.Schema({
                 type: Number,
                 // required: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: String,
                     // required: true
@@ -456,7 +456,7 @@ var profileSchema = new mongoose.Schema({
                 type: Number,
                 // required: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: String,
                     // required: true
@@ -533,7 +533,7 @@ var profileSchema = new mongoose.Schema({
                 type: Number,
                 // required: true
             },
-            Strings: {
+            Documents: {
                 passing_certificate: {
                     type: String,
                     // required: true
@@ -577,7 +577,7 @@ var profileSchema = new mongoose.Schema({
             type: Boolean,
             // required: true
         },
-        other_Strings: {
+        other_documents: {
             photo: {
                 type: String,
                 // required: true
