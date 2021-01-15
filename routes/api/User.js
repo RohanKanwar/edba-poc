@@ -78,11 +78,11 @@ router.post('/sendOtp', async (req, res) => {
             })
         }
         else {
-            phone_number = req.body.phone_number
+            global.phone_number = req.body.phone_number
             client.verify.services(process.env.SERVICE_SID)
             .verifications
             .create({
-                to: `+${phone_number}`,
+                to: `+91${global.phone_number}`,
                 channel: 'sms'
             })
             .then(data => res.status(200).json({
@@ -105,7 +105,7 @@ router.post('/verifyOTP', async (req, res) => {
             client.verify.services(process.env.SERVICE_SID)
             .verificationChecks
             .create({
-                to: `+${phone_number}`,
+                to: `+91${global.phone_number}`,
                 // code is meant as otp here
                 code: req.body.code
             })
@@ -114,7 +114,7 @@ router.post('/verifyOTP', async (req, res) => {
                     data: data
                 })
             })
-            phone_number = ''
+            global.phone_number = ''
         }
     } catch (error) {
         console.log(error)
