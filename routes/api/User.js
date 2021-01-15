@@ -86,17 +86,25 @@ router.post('/sendOtp', async (req, res) => {
                 to: `+91${global.phone_number}`,
                 channel: 'sms'
             })
-            .then(data => res.status(200).json({
-                data: data,
-                message: 'Otp sent'
-            }))
+            .then(data => {
+
+                res.status(200).json({
+                    data: data,
+                    message: 'Otp Sent'
+                })
+            })
+            .catch(err => {
+                res.status(400).json({
+                    message: 'Invalid Phone Number'
+                })
+            })
         }
     } catch (error) {
         console.log(error)      
     }
 })
 
-router.post('/verifyOTP', async (req, res) => {
+router.post('/verifyOtp', async (req, res) => {
     try {
         if(!req.body.code) {
             return res.status(400).json({
@@ -112,12 +120,19 @@ router.post('/verifyOTP', async (req, res) => {
                 code: req.body.code
             })
             .then(data => {
-                res.status(200).json({
-                    data: data,
-                    message: 'Otp Verified'
-                })
+                console.log('data', data)
+                if(data.status === 'approved') {
+                    res.status(200).json({
+                        data: data,
+                        message: 'Otp Verified'
+                    })
+                    global.phone_number = ''
+                } else {
+                    res.status(400).json({
+                        message: 'Invalid Otp'
+                    })
+                }
             })
-            global.phone_number = ''
         }
     } catch (error) {
         console.log(error)
